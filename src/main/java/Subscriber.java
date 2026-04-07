@@ -13,5 +13,20 @@ public class Subscriber {
         this.monthsRemaining = monthsRemaining;
     }
 
+    // Getters and Setters
+    public int getId() { return id; }
+    public String getEmail() { return email; }
+    public Plan getPlan() { return plan; }
+    public boolean isActive() { return active; }
+    public int getMonthsRemaining() { return monthsRemaining; }
+
+    public void setActive(boolean active) { this.active = active; }
+    public void setMonthsRemaining(int monthsRemaining) { this.monthsRemaining = monthsRemaining; }
+
+    @Override
+    public String toString() {
+        return email + "(" + plan + ", months: " + monthsRemaining + ", active: " + active + ")";
+    }
+
 
 }
