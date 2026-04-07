@@ -1,3 +1,5 @@
+package se.Lexion;
+
 public class Subscriber {
     private int id;
     private String email;
