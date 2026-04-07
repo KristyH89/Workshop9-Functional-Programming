@@ -1,4 +1,7 @@
-package se.Lexion;
+package se.Lexion.service;
+import se.Lexion.functional.SubscriberAction;
+import se.Lexion.functional.SubscriberFilter;
+import se.Lexion.model.Subscriber;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -10,7 +13,7 @@ public class SubscriberProcessor {
                 .collect(Collectors.toList());
     }
 
-    public List<Subscriber> applytoMatching(
+    public List<Subscriber> applyToMatching(
             List<Subscriber> list,
             SubscriberFilter filter,
             SubscriberAction action) {

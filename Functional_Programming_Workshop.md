@@ -17,15 +17,15 @@ You will then work with lists of subscribers and apply different rules, such as 
 classDiagram
     direction LR
 
-    class se.Lexion.Subscriber {
+    class se.Lexion.model.Subscriber {
         -id: int
         -email: String
-        -plan: se.Lexion.Plan
+        -plan: se.Lexion.model.Plan
         -active: boolean
         -monthsRemaining: int
     }
 
-    class se.Lexion.Plan {
+    class se.Lexion.model.Plan {
         <<enumeration>>
         FREE
         BASIC
@@ -33,28 +33,28 @@ classDiagram
     }
 
     class SubscriberDAO {
-        +save(subscriber: se.Lexion.Subscriber): void
-        +findAll(): List~se.Lexion.Subscriber~
-        +findById(id: int): Optional~se.Lexion.Subscriber~
+        +save(subscriber: se.Lexion.model.Subscriber): void
+        +findAll(): List~se.Lexion.model.Subscriber~
+        +findById(id: int): Optional~se.Lexion.model.Subscriber~
     }
 
     class SubscriberFilter {
         <<functionalinterface>>
-        +matches(subscriber: se.Lexion.Subscriber): boolean
+        +matches(subscriber: se.Lexion.model.Subscriber): boolean
     }
 
     class SubscriberAction {
         <<functionalinterface>>
-        +run(subscriber: se.Lexion.Subscriber): void
+        +run(subscriber: se.Lexion.model.Subscriber): void
     }
 
     class SubscriberProcessor {
-        +findSubscribers(list: List~se.Lexion.Subscriber~, filter: SubscriberFilter): List~se.Lexion.Subscriber~
-        +applyToMatching(list: List~se.Lexion.Subscriber~, filter: SubscriberFilter, action: SubscriberAction): List~se.Lexion.Subscriber~
+        +findSubscribers(list: List~se.Lexion.model.Subscriber~, filter: SubscriberFilter): List~se.Lexion.model.Subscriber~
+        +applyToMatching(list: List~se.Lexion.model.Subscriber~, filter: SubscriberFilter, action: SubscriberAction): List~se.Lexion.model.Subscriber~
     }
 
-    se.Lexion.Subscriber --> se.Lexion.Plan
-    SubscriberDAO --> se.Lexion.Subscriber
+    se.Lexion.model.Subscriber --> se.Lexion.model.Plan
+    SubscriberDAO --> se.Lexion.model.Subscriber
     SubscriberProcessor ..> SubscriberFilter
     SubscriberProcessor ..> SubscriberAction
 ```
@@ -65,25 +65,25 @@ classDiagram
 
 Define and apply the following **business rules** using functional interfaces (`SubscriberFilter` and `SubscriberAction`).  
 
-1. **Active se.Lexion.Subscriber**  
+1. **Active se.Lexion.model.Subscriber**  
    Matches subscribers whose account is active.
 
 2. **Expiring Subscription**  
    Matches subscribers with `0` or `1` month remaining.
 
-3. **Active and Expiring se.Lexion.Subscriber**  
+3. **Active and Expiring se.Lexion.model.Subscriber**  
    Matches subscribers who are active and whose subscription is about to expire.
 
-4. **se.Lexion.Subscriber by se.Lexion.Plan**  
+4. **se.Lexion.model.Subscriber by se.Lexion.model.Plan**  
    Matches subscribers based on their subscription plan (`FREE`, `BASIC`, or `PRO`).
 
-5. **Paying se.Lexion.Subscriber**  
+5. **Paying se.Lexion.model.Subscriber**  
    Matches subscribers with a paid plan (`BASIC` or `PRO`).
 
 6. **Extend Subscription**  
    Increases the remaining subscription period for a subscriber.
 
-7. **Deactivate se.Lexion.Subscriber**  
+7. **Deactivate se.Lexion.model.Subscriber**  
    Marks a subscriber as inactive.
 
 
@@ -106,7 +106,7 @@ Write **JUnit tests** for the core business logic.
 - **Scenario 5: Deactivate Expired Free Subscribers**  
   Deactivate free subscribers whose subscriptions have expired.
 
-- **Scenario 6: Filter Subscribers by se.Lexion.Plan**  
+- **Scenario 6: Filter Subscribers by se.Lexion.model.Plan**  
   Display subscribers based on their subscription plan (FREE, BASIC, or PRO).
 
 - **Add more scenarios as you see fit!**

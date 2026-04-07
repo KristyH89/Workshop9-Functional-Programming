@@ -1,4 +1,6 @@
-package se.Lexion;
+package se.Lexion.functional;
+
+import se.Lexion.model.Subscriber;
 
 @FunctionalInterface
 public interface SubscriberFilter {

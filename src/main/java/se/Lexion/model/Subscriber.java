@@ -1,4 +1,4 @@
-package se.Lexion;
+package se.Lexion.model;
 
 public class Subscriber {
     private int id;
